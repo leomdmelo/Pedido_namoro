@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer Namorar Comigo?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        #sim {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #nao {
+            background-color: #FF0000;
+            color: white;
+            position: relative;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quer namorar comigo?</h1>
+        <div class="buttons">
+            <button id="sim">Sim</button>
+            <button id="nao">Não</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Eu sabia! 😊</h2>
+            <img src="https://www.w3schools.com/w3images/fjords.jpg" alt="Imagem Feliz">
+            <button class="close">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const botaoNao = document.getElementById('nao');
+            const botaoSim = document.getElementById('sim');
+            const modal = document.getElementById('modal');
+            const closeModal = document.querySelector('.close');
+
+            // Mover o botão "Não" para posições aleatórias quando o mouse passar por cima
+            botaoNao.addEventListener('mouseenter', function () {
+                const larguraJanela = window.innerWidth - botaoNao.offsetWidth;
+                const alturaJanela = window.innerHeight - botaoNao.offsetHeight;
+                const novaPosicaoX = Math.floor(Math.random() * larguraJanela);
+                const novaPosicaoY = Math.floor(Math.random() * alturaJanela);
+
+                botaoNao.style.position = 'absolute'; // Tornar o botão "Não" posicionado de forma absoluta
+                botaoNao.style.left = novaPosicaoX + 'px';
+                botaoNao.style.top = novaPosicaoY + 'px';
+            });
+
+            // Abrir modal quando o botão "Sim" for clicado
+            botaoSim.addEventListener('click', function () {
+                modal.style.display = 'flex';
+            });
+
+            // Fechar modal
+            closeModal.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Fechar modal ao clicar fora da área da modal
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
